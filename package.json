@@ -1,0 +1,30 @@
+{
+  "name": "cypress_ai_reporter",
+  "version": "1.0.0",
+  "description": "cypress ai reporter",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidmungai/cypress_ai_reporter.git"
+  },
+  "keywords": [
+    "ai",
+    "cypress",
+    "reporter"
+  ],
+  "author": "davidmungai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidmungai/cypress_ai_reporter/issues"
+  },
+  "homepage": "https://github.com/davidmungai/cypress_ai_reporter#readme",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
