@@ -28,6 +28,8 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "cypress": "^14.1.0"
+    "cypress": "^14.1.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.2.0"
   }
 }
