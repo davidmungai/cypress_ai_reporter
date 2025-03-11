@@ -2,7 +2,7 @@
   "name": "cypress_ai_reporter",
   "version": "1.0.0",
   "description": "cypress ai reporter",
-  "main": "index.js",
+  "main": "src/index.js",
   "directories": {
     "example": "example"
   },
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/davidmungai/cypress_ai_reporter#readme",
   "devDependencies": {
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "cypress": "^14.1.0"
   }
 }
