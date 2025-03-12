@@ -2,3 +2,4 @@ example/node_modules/*
 node_modules/*
 frames/*
 inceptionv3_model.h5
+image_caption.h5
