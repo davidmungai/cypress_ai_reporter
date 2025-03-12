@@ -28,8 +28,12 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "canvas": "^3.1.0",
     "cypress": "^14.1.0",
     "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^5.2.0"
+    "ffmpeg-static": "^5.2.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }

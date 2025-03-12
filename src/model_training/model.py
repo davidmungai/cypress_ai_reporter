@@ -1,3 +1,5 @@
+import tensorflowjs as tfjs
+
 import tensorflow as tf
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Add
 from tensorflow.keras.models import Model
