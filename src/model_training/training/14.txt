@@ -1,0 +1,4 @@
+inputted product name is black
+inputted product weight is 23
+selected product category is others
+selected product size is medium
