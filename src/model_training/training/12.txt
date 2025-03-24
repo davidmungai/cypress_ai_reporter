@@ -1,4 +1,0 @@
-inputted product name as black
-inputted product weight as 23
-selecting the product category
-available product category are clothing, electronics, furniture, others, real Estate

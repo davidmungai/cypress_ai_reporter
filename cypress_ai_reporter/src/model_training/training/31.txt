@@ -1,0 +1,2 @@
+started right click on a dom element 
+loading the actions page

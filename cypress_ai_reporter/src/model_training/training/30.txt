@@ -1,0 +1,1 @@
+finished double click on a dom element test and passed

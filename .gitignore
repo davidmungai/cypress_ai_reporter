@@ -1,5 +1,7 @@
 example/node_modules/*
-node_modules/*
-frames/*
-inceptionv3_model.h5
+cypress_ai_reporter/node_modules/*
+cypress_ai_reporter/src/frames/*
+cypress_ai_reporter/src/inceptionv3_model.h5
 image_caption.h5
+.venv/*
+example/cypress/videos/*

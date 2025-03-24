@@ -1,3 +1,0 @@
-finished the uncheck a checkbox element test and passed 
-starting uncheck a checkbox element
-loading action page
