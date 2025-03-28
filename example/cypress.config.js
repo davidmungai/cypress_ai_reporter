@@ -1,14 +1,15 @@
 const { defineConfig } = require("cypress");
-const CustomReporter = require('./reporter');
+const cypress_ai_reporter = require("cypress_ai_reporter");
+
 
 
 module.exports = defineConfig({
   e2e: {
     video: true,
-    reporter: 'reporter.js',
+    reporter: 'cypress_ai_reporter',
     setupNodeEvents(on, config) {
       // implement node event listeners here
    
     },
   },
-});
+});``
