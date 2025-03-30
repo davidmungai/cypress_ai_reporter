@@ -5,3 +5,5 @@ cypress_ai_reporter/src/inceptionv3_model.h5
 image_caption.h5
 .venv/*
 example/cypress/videos/*
+node_modules
+example/cypress/screenshots/*
