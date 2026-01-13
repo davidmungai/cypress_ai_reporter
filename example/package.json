@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"npm link cypress_ai_reporter && npx cypress run"
+    "start": "npm link cypress_ai_reporter && npx cypress run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^14.1.0"
+  },
+  "dependencies": {
+    "cypress-ai-reporter": "file:../cypress_ai_reporter/cypress-ai-reporter-1.0.0.tgz"
   }
 }
