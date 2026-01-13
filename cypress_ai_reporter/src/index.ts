@@ -1,0 +1,1 @@
+export { cypressAiReporter } from './plugin';

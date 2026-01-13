@@ -1,41 +1,31 @@
 {
-  "name": "cypress_ai_reporter",
+  "name": "cypress-ai-reporter",
   "version": "1.0.0",
-  "description": "cypress ai reporter",
-  "main": "src/index.js",
-  "directories": {
-    "example": "example"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"npx tsc && npm link"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davidmungai/cypress_ai_reporter.git"
-  },
-  "keywords": [
-    "ai",
-    "cypress",
-    "reporter"
+  "description": "Cypress AI Reporter with Elasticsearch and Ollama",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
   ],
-  "author": "davidmungai",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/davidmungai/cypress_ai_reporter/issues"
-  },
-  "homepage": "https://github.com/davidmungai/cypress_ai_reporter#readme",
-  "devDependencies": {
-    "typescript": "^5.8.2"
+  "scripts": {
+    "start": "ts-node src/start-backend.ts",
+    "query": "ts-node src/query.ts",
+    "index-pdf": "ts-node src/index_pdf.ts",
+    "build": "tsc"
   },
   "dependencies": {
-    "@types/mocha": "^10.0.10",
-    "canvas": "^3.1.0",
-    "cypress": "^14.1.0",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^5.2.0",
-    "fs": "^0.0.1-security",
-    "mocha": "^11.1.0",
-    "path": "^0.12.7"
+    "@elastic/elasticsearch": "^8.11.0",
+    "@langchain/community": "^0.0.10",
+    "@langchain/core": "^0.1.0",
+    "@langchain/openai": "^0.0.8",
+    "axios": "^1.13.2",
+    "dotenv": "^16.0.0",
+    "langchain": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "cypress": "^15.8.2",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
   }
 }
