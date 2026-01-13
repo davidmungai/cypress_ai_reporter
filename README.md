@@ -26,14 +26,17 @@ This repository contains a Cypress plugin and associated tools to power AI-drive
 
 ### 1. Start Infrastructure
 
-Navigate to the reporter directory and start the services:
+You can configure the infrastructure (images, ports) via a `cypressAiReport.json` file in your project root (see Configuration section).
+
+To apply configuration and start services:
 
 ```bash
 cd cypress_ai_reporter
+npm run setup-infra
 docker-compose up -d
 ```
 
-This will start Elasticsearch on `http://localhost:9200` and Kibana on `http://localhost:5601`.
+This will start Elasticsearch (default: `http://localhost:9200`) and Kibana (default: `http://localhost:5601`).
 
 ### 2. Prepare the Reporter
 
@@ -75,7 +78,29 @@ npm run query "What tests failed due to login issues?"
 
 ## Configuration
 
-In your Cypress project's `cypress.config.js` (or `.ts`), register the plugin:
+You can configure the plugin using a `cypressAiReport.json` file in your project root. This file handles both plugin behavior and infrastructure settings.
+
+**Example `cypressAiReport.json`:**
+
+```json
+{
+  "elasticNode": "http://localhost:9201",
+  "indexName": "cypress-test-logs",
+  "ollamaUrl": "http://localhost:11434",
+  "embeddingModel": "nomic-embed-text",
+  "chatModel": "gemma3",
+  "reportDir": "cypress/custom-reports",
+  "elasticImage": "docker.elastic.co/elasticsearch/elasticsearch:8.11.1",
+  "kibanaImage": "docker.elastic.co/kibana/kibana:8.11.1",
+  "elasticPort": 9201,
+  "kibanaPort": 5601
+}
+```
+
+- **Plugin Settings**: Used by Cypress during test execution (`elasticNode`, `chatModel`, `reportDir`, etc.)
+- **Infrastructure Settings**: Used by `npm run setup-infra` to configure Docker (`elasticPort`, `elasticImage`, etc.)
+
+Alternatively, you can pass options directly in `cypress.config.js` (these override `cypressAiReport.json` for plugin execution, but do not affect infrastructure):
 
 ```javascript
 const { defineConfig } = require("cypress");
@@ -84,13 +109,24 @@ const { cypressAiReporter } = require("cypress-ai-reporter");
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      cypressAiReporter(on, config, {
-        elasticNode: 'http://localhost:9200', // optional
-        indexName: 'cypress-test-logs',       // optional
-        ollamaUrl: 'http://localhost:11434',  // optional
-        embeddingModel: 'nomic-embed-text'    // optional
-      });
+      cypressAiReporter(on, config);
     },
   },
 });
+```
+
+## AI Analysis Reports
+
+After every test run, the plugin automatically:
+1.  Analyzes failures using the configured LLM (`chatModel`).
+2.  Prints a concise summary to the console (formatted as "On [Page], when [Action], then [Failure]").
+3.  Generates a detailed JSON report in the configured `reportDir` (default: `cypress/reports`).
+
+Example JSON Report:
+```json
+{
+  "timestamp": "2026-01-13T19:14:09.108Z",
+  "aiAnalysis": "On the login page, when submitting invalid credentials, then the error message does not appear.",
+  "tests": [ ... ]
+}
 ```

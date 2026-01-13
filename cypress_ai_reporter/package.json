@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "start": "ts-node src/start-backend.ts",
+    "setup-infra": "ts-node src/setup-infra.ts",
     "query": "ts-node src/query.ts",
     "index-pdf": "ts-node src/index_pdf.ts",
     "build": "tsc"
