@@ -12,7 +12,7 @@
     "setup-infra": "ts-node src/setup-infra.ts",
     "query": "ts-node src/query.ts",
     "index-pdf": "ts-node src/index_pdf.ts",
-    "build": "tsc"
+    "build": "tsc && cp src/process_videos.py dist/"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.11.0",

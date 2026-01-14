@@ -22,6 +22,12 @@ async function setupIndex() {
                         dims: 768, // Match nomic-embed-text dimensions
                         index: true,
                         similarity: 'cosine'
+                    },
+                    image_embedding: {
+                        type: 'dense_vector',
+                        dims: 768, // Histogram: 256 * 3 = 768
+                        index: true,
+                        similarity: 'cosine'
                     }
                 }
             }
@@ -29,7 +35,24 @@ async function setupIndex() {
         console.log('Index created.');
     }
     else {
-        console.log(`Index ${client_1.INDEX_NAME} already exists.`);
+        console.log(`Index ${client_1.INDEX_NAME} already exists. Updating mapping...`);
+        try {
+            await client_1.esClient.indices.putMapping({
+                index: client_1.INDEX_NAME,
+                properties: {
+                    image_embedding: {
+                        type: 'dense_vector',
+                        dims: 768,
+                        index: true,
+                        similarity: 'cosine'
+                    }
+                }
+            });
+            console.log('Mapping updated.');
+        }
+        catch (e) {
+            console.log('Mapping update failed (might already exist): ' + e.message);
+        }
     }
 }
 if (require.main === module) {

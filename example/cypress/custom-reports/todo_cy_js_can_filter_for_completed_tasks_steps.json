@@ -1,0 +1,54 @@
+[
+  {
+    "name": "visit",
+    "args": [
+      "https://example.cypress.io/todo"
+    ]
+  },
+  {
+    "name": "contains",
+    "args": [
+      "Pay electric bill"
+    ]
+  },
+  {
+    "name": "parent",
+    "args": []
+  },
+  {
+    "name": "find",
+    "args": [
+      "input[type=checkbox]"
+    ]
+  },
+  {
+    "name": "check",
+    "args": []
+  },
+  {
+    "name": "contains",
+    "args": [
+      "Completed"
+    ]
+  },
+  {
+    "name": "click",
+    "args": []
+  },
+  {
+    "name": "get",
+    "args": [
+      ".todo-list li"
+    ]
+  },
+  {
+    "name": "first",
+    "args": []
+  },
+  {
+    "name": "contains",
+    "args": [
+      "Walk the dog"
+    ]
+  }
+]

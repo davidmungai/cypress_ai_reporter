@@ -1,0 +1,9 @@
+[
+    {
+        "specName": "historical_spec.cy.js",
+        "testTitle": "Historical > Test 1",
+        "status": "failed",
+        "errorMessage": "Historical error: element not found",
+        "timestamp": "2025-01-01T00:00:00.000Z"
+    }
+]
