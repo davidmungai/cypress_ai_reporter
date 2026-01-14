@@ -198,14 +198,14 @@ module.exports = defineConfig({
 
 After every test run, the plugin automatically:
 1.  Analyzes failures using the configured LLM (`chatModel`).
-2.  Prints a concise summary to the console (formatted as "On [Page], when [Action], then [Failure]").
+2.  Prints a concise summary to the console (formatted as "On [Page], when [Action 1] and [Action 2]..., the [Error] on [Last Action]").
 3.  Generates a detailed JSON report in the configured `reportDir` (default: `cypress/reports`).
 
 Example JSON Report:
 ```json
 {
-  "timestamp": "2026-01-13T19:14:09.108Z",
-  "aiAnalysis": "On the login page, when submitting invalid credentials, then the error message does not appear.",
+  "timestamp": "2026-01-14T07:05:34.922Z",
+  "aiAnalysis": "On the example to-do app, when attempting to filter for uncompleted tasks, the test timed out after 4000ms and was unable to find enough elements. Found 1, expected 10.",
   "tests": [ ... ]
 }
 ```
