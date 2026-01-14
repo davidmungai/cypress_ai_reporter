@@ -1,0 +1,34 @@
+[
+  {
+    "name": "visit",
+    "args": [
+      "https://example.cypress.io/todo"
+    ]
+  },
+  {
+    "name": "get",
+    "args": [
+      ".todo-list li"
+    ]
+  },
+  {
+    "name": "get",
+    "args": [
+      ".todo-list li"
+    ]
+  },
+  {
+    "name": "first",
+    "args": []
+  },
+  {
+    "name": "get",
+    "args": [
+      ".todo-list li"
+    ]
+  },
+  {
+    "name": "last",
+    "args": []
+  }
+]

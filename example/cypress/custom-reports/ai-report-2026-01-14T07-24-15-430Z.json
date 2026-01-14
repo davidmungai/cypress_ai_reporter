@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-01-14T07:24:15.431Z",
+  "totalTests": 8,
+  "totalPassed": 7,
+  "totalFailed": 1,
+  "totalPending": 0,
+  "totalSkipped": 0,
+  "browserName": "electron",
+  "browserVersion": "130.0.6723.137",
+  "osName": "darwin",
+  "osVersion": "25.1.0",
+  "aiAnalysis": " On the to-do feature, when clicking on the \"Filter by completion status\" button and then changing the selection from \"all\" to \"incomplete\", the test timed out after 4000 ms and failed with an AssertionError stating \"Not enough elements found. Found '1', expected '10'\". The error occurred during the \"Filter by completion status\" action. ",
+  "tests": [
+    {
+      "spec": "todo.cy.js",
+      "title": "example to-do app > displays two todo items by default",
+      "state": "passed",
+      "error": null,
+      "duration": 1308
+    },
+    {
+      "spec": "todo.cy.js",
+      "title": "example to-do app > with a checked task > can filter for uncompleted tasks",
+      "state": "failed",
+      "error": "AssertionError: Timed out retrying after 4000ms: Not enough elements found. Found '1', expected '10'.\n    at Context.eval (webpack://cypressai_report/./cypress/e2e/1-getting-started/todo.cy.js:58:9)",
+      "duration": 4449
+    },
+    {
+      "spec": "todo.cy.js",
+      "title": "example to-do app > with a checked task > can filter for completed tasks",
+      "state": "passed",
+      "error": null,
+      "duration": 325
+    },
+    {
+      "spec": "todo.cy.js",
+      "title": "example to-do app > with a checked task > can delete all completed tasks",
+      "state": "passed",
+      "error": null,
+      "duration": 367
+    },
+    {
+      "spec": "todo1.cy.js",
+      "title": "example to-do app1 > displays two todo items by default",
+      "state": "passed",
+      "error": null,
+      "duration": 978
+    },
+    {
+      "spec": "todo1.cy.js",
+      "title": "example to-do app1 > with a checked task > can filter for uncompleted tasks",
+      "state": "passed",
+      "error": null,
+      "duration": 424
+    },
+    {
+      "spec": "todo1.cy.js",
+      "title": "example to-do app1 > with a checked task > can filter for completed tasks",
+      "state": "passed",
+      "error": null,
+      "duration": 380
+    },
+    {
+      "spec": "todo1.cy.js",
+      "title": "example to-do app1 > with a checked task > can delete all completed tasks",
+      "state": "passed",
+      "error": null,
+      "duration": 375
+    }
+  ]
+}
