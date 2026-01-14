@@ -19,7 +19,7 @@ This repository contains a Cypress plugin and associated tools to power AI-drive
     - You must pull the embedding and chat models used by the plugin and query engine:
       ```bash
       ollama pull nomic-embed-text
-      ollama pull gemma3
+      ollama pull llava
       ```
 
 ## Getting Started
@@ -76,6 +76,49 @@ cd cypress_ai_reporter
 npm run query "What tests failed due to login issues?"
 ```
 
+## Integration with Your Custom Cypress Project
+
+To use this reporter in your own existing Cypress project:
+
+1.  **Install the Package**:
+    ```bash
+    npm install cypress-ai-reporter
+    ```
+    *(Note: If building locally, point to the local path or tarball)*
+
+2.  **Register the Plugin**:
+    Edit your `cypress.config.{js,ts}` to include the reporter in the `setupNodeEvents` function.
+
+    ```javascript
+    const { defineConfig } = require("cypress");
+    const { cypressAiReporter } = require("cypress-ai-reporter");
+
+    module.exports = defineConfig({
+      e2e: {
+        setupNodeEvents(on, config) {
+          // Register the AI reporter
+          cypressAiReporter(on, config);
+          return config;
+        },
+      },
+    });
+    ```
+
+3.  **Add Configuration**:
+    Create a `cypressAiReport.json` in your project root to configure the connection to Elasticsearch and Ollama.
+
+    ```json
+    {
+      "elasticNode": "http://localhost:9200",
+      "indexName": "cypress-test-logs",
+      "ollamaUrl": "http://localhost:11434",
+      "chatModel": "llava"
+    }
+    ```
+
+4.  **Ensure Backend is Running**:
+    Make sure the Elasticsearch and Ollama services are running (see "Start Infrastructure" above) and accessible from the machine running your tests.
+
 ## Configuration
 
 You can configure the plugin using a `cypressAiReport.json` file in your project root. This file handles both plugin behavior and infrastructure settings.
@@ -88,7 +131,7 @@ You can configure the plugin using a `cypressAiReport.json` file in your project
   "indexName": "cypress-test-logs",
   "ollamaUrl": "http://localhost:11434",
   "embeddingModel": "nomic-embed-text",
-  "chatModel": "gemma3",
+  "chatModel": "llava",
   "reportDir": "cypress/custom-reports",
   "elasticImage": "docker.elastic.co/elasticsearch/elasticsearch:8.11.1",
   "kibanaImage": "docker.elastic.co/kibana/kibana:8.11.1",

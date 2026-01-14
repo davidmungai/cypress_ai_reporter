@@ -33,12 +33,38 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.INDEX_NAME = exports.esClient = void 0;
-const elasticsearch_1 = require("@elastic/elasticsearch");
-const dotenv = __importStar(require("dotenv"));
-const config_1 = require("./config");
-dotenv.config();
-exports.esClient = new elasticsearch_1.Client({
-    node: config_1.config.elasticNode || process.env.ES_URL || 'http://localhost:9200',
-});
-exports.INDEX_NAME = config_1.config.indexName;
+exports.config = void 0;
+exports.loadConfig = loadConfig;
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
+const DEFAULT_CONFIG = {
+    elasticNode: 'http://localhost:9200',
+    indexName: 'cypress-test-logs',
+    ollamaUrl: 'http://localhost:11434',
+    embeddingModel: 'nomic-embed-text',
+    chatModel: 'llava',
+};
+function loadConfig() {
+    const potentialPaths = [
+        process.env.CYPRESS_AI_CONFIG_PATH,
+        path.resolve(process.cwd(), 'cypressAiReport.json'),
+        path.resolve(process.cwd(), '../example/cypressAiReport.json'), // For local dev
+        path.resolve(process.cwd(), '../cypressAiReport.json')
+    ];
+    for (const p of potentialPaths) {
+        if (p && fs.existsSync(p)) {
+            try {
+                const content = fs.readFileSync(p, 'utf-8');
+                const userConfig = JSON.parse(content);
+                console.log(`Loaded configuration from ${p}`);
+                return { ...DEFAULT_CONFIG, ...userConfig };
+            }
+            catch (err) {
+                console.warn(`Failed to parse config at ${p}: ${err.message}`);
+            }
+        }
+    }
+    console.log('Using default configuration');
+    return DEFAULT_CONFIG;
+}
+exports.config = loadConfig();

@@ -34,7 +34,7 @@ export function cypressAiReporter(on: Cypress.PluginEvents, config: Cypress.Plug
   const indexName = finalConfig.indexName || 'cypress-test-logs';
   const ollamaUrl = finalConfig.ollamaUrl || 'http://localhost:11434';
   const embeddingModel = finalConfig.embeddingModel || 'nomic-embed-text';
-  const chatModel = finalConfig.chatModel || 'gemma3';
+  const chatModel = finalConfig.chatModel || 'llava';
   const reportDir = finalConfig.reportDir || 'cypress/reports';
 
   const esClient = new Client({ node: esNode });

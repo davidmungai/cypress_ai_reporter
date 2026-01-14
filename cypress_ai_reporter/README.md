@@ -13,7 +13,7 @@
     Pull the models:
     ```bash
     ollama pull nomic-embed-text
-    ollama pull gemma3
+    ollama pull llava
     ```
 
 3.  **Install Dependencies**:

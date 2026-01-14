@@ -7,8 +7,9 @@ exports.retrieveAndAnswer = retrieveAndAnswer;
 const client_1 = require("./client");
 const embeddings_1 = require("./embeddings");
 const axios_1 = __importDefault(require("axios"));
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
-const LLM_MODEL = 'gemma3'; // Or whatever model you have
+const config_1 = require("./config");
+const OLLAMA_BASE_URL = config_1.config.ollamaUrl;
+const LLM_MODEL = config_1.config.chatModel;
 async function retrieveAndAnswer(query) {
     // 1. Embed query
     const queryVector = await (0, embeddings_1.getOllamaEmbedding)(query);

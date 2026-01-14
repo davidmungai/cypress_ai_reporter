@@ -1,12 +1,12 @@
 {
-  "elasticNode": "http://localhost:9201",
-  "indexName": "cypress-test-logs",
-  "ollamaUrl": "http://localhost:11434",
-  "embeddingModel": "nomic-embed-text",
-  "chatModel": "gemma3",
-  "reportDir": "cypress/custom-reports",
-  "elasticImage": "docker.elastic.co/elasticsearch/elasticsearch:8.11.1",
-  "kibanaImage": "docker.elastic.co/kibana/kibana:8.11.1",
-  "elasticPort": 9201,
-  "kibanaPort": 5601
+    "elasticNode": "http://localhost:9201",
+    "indexName": "cypress-test-logs",
+    "ollamaUrl": "http://localhost:11434",
+    "embeddingModel": "nomic-embed-text",
+    "chatModel": "llava",
+    "reportDir": "cypress/custom-reports",
+    "elasticImage": "docker.elastic.co/elasticsearch/elasticsearch:8.11.1",
+    "kibanaImage": "docker.elastic.co/kibana/kibana:8.11.1",
+    "elasticPort": 9201,
+    "kibanaPort": 5601
 }

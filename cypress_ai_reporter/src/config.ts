@@ -14,7 +14,7 @@ const DEFAULT_CONFIG: AppConfig = {
     indexName: 'cypress-test-logs',
     ollamaUrl: 'http://localhost:11434',
     embeddingModel: 'nomic-embed-text',
-    chatModel: 'gemma3',
+    chatModel: 'llava',
 };
 
 export function loadConfig(): AppConfig {
