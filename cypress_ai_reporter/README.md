@@ -16,12 +16,19 @@
     ollama pull llava
     ```
 
-3.  **Install Dependencies**:
+3.  **Install Python Dependencies**:
+    The plugin uses Python for video processing. Ensure Python 3 is installed:
+    ```bash
+    pip3 install opencv-python numpy
+    ```
+    *(Ensure `ffmpeg` is also installed on your system)*
+
+4.  **Install Dependencies**:
     ```bash
     npm install
     ```
 
-4.  **Initialize Index**:
+5.  **Initialize Index**:
     ```bash
     npm start
     ```

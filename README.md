@@ -14,6 +14,7 @@ This repository contains a Cypress plugin and associated tools to power AI-drive
 ## Prerequisites
 
 - **Node.js** (v16+ recommended)
+- **Python 3** (with `opencv-python`, `numpy`, and `ffmpeg` installed)
 - **Docker & Docker Compose**
 - **Ollama** (installed locally)
     - You must pull the embedding and chat models used by the plugin and query engine:
@@ -94,12 +95,37 @@ To use this reporter in your own existing Cypress project:
     const { cypressAiReporter } = require("cypress-ai-reporter");
 
     module.exports = defineConfig({
-      e2e: {
+      e2video: true, // Enable video recording
         setupNodeEvents(on, config) {
           // Register the AI reporter
           cypressAiReporter(on, config);
           return config;
         },
+      },
+    });
+    ```
+
+    *Recommended*: To enable advanced step-by-step reporting and prompt context, add the following to your `cypress/support/e2e.js` (or `support/index.js`):
+
+    ```javascript
+    import './commands'
+    
+    // Test Step Logger
+    const steps = [];
+    beforeEach(() => { steps.length = 0; });
+    
+    Cypress.on('command:start', (command) => {
+      if (command.attributes.name !== 'task') {
+        steps.push({ name: command.attributes.name, args: command.attributes.args });
+      }
+    });
+    
+    afterEach(function () {
+      cy.task('logTestSteps', {
+        spec: Cypress.spec.name,
+        title: this.currentTest.title,
+        steps: steps
+      });},
       },
     });
     ```
@@ -132,12 +158,22 @@ You can configure the plugin using a `cypressAiReport.json` file in your project
   "ollamaUrl": "http://localhost:11434",
   "embeddingModel": "nomic-embed-text",
   "chatModel": "llava",
-  "reportDir": "cypress/custom-reports",
-  "elasticImage": "docker.elastic.co/elasticsearch/elasticsearch:8.11.1",
-  "kibanaImage": "docker.elastic.co/kibana/kibana:8.11.1",
-  "elasticPort": 9201,
-  "kibanaPort": 5601
-}
+  "Features
+
+- **AI Failure Analysis**: Automatically analyzes failed tests using Ollama (LLaVA) and provides a summary.
+- **Detailed Reporting**: Generates JSON reports, captures videos of failures, and logs execution steps.
+- **Semantic Search**: Indexes test errors and titles into Elasticsearch for natural language querying.
+- **Historical Data & Video Processing**:
+    - The plugin scans `${reportDir}/setup` for historical logs `.json` and video files `.mp4` on startup.
+    - Videos are chunked and processed using OpenCV to generate image embeddings, allowing multimodal search capabilities.
+
+## AI Analysis Reports
+
+After every test run, the plugin automatically:
+1.  Analyzes failures using the configured LLM (`chatModel`).
+2.  Prints a concise summary to the console (formatted as "On [Page], when [Action], then [Failure]").
+3.  Generates a detailed JSON report in the configured `reportDir` (default: `cypress/reports`).
+4.  Saves video recordings and detailed step logs for failed tests alongside the report
 ```
 
 - **Plugin Settings**: Used by Cypress during test execution (`elasticNode`, `chatModel`, `reportDir`, etc.)

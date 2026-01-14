@@ -233,7 +233,7 @@ export function cypressAiReporter(on: Cypress.PluginEvents, config: Cypress.Plug
       console.log('\n--- AI Analysis of Test Failures ---');
       const failuresContext = failedTests.map((t, i) => {
         const steps = testStepsStore[`${t.spec}-${t.title}`];
-        const stepsText = steps ? steps.map((s: any) => `${s.name} ${s.args.map((a:any) => typeof a === 'string' ? a : JSON.stringify(a)).join(', ')}`).join(' -> ') : 'No steps recorded';
+        const stepsText = steps ? steps.map((s: any) => `${s.name} ${s.args.map((a: any) => typeof a === 'string' ? a : JSON.stringify(a)).join(', ')}`).join(' -> ') : 'No steps recorded';
         return `${i + 1}. [${t.spec}] ${t.title}\nSteps: ${stepsText}\nError: ${t.error}`;
       }).join('\n\n');
 
