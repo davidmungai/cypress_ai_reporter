@@ -2,9 +2,10 @@ import { esClient, INDEX_NAME } from './client';
 import { getOllamaEmbedding } from './embeddings';
 import { Client } from '@elastic/elasticsearch';
 import axios from 'axios';
+import { config } from './config';
 
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
-const LLM_MODEL = 'gemma3'; // Or whatever model you have
+const OLLAMA_BASE_URL = config.ollamaUrl;
+const LLM_MODEL = config.chatModel;
 
 export async function retrieveAndAnswer(query: string) {
   // 1. Embed query

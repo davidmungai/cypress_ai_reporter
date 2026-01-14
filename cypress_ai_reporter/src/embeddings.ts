@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { config } from './config';
 
-const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
-const EMBEDDING_MODEL = 'nomic-embed-text'; // Ensure you have this model pulled in Ollama
+const OLLAMA_BASE_URL = config.ollamaUrl;
+const EMBEDDING_MODEL = config.embeddingModel;
 
 export async function getOllamaEmbedding(text: string): Promise<number[]> {
   try {
